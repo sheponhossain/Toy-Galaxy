@@ -7,9 +7,7 @@ const Routes = () => {
     // Add authentication-related values and functions here
   };
 
-  return (
-    <AuthContext.Provider value={authValue}>{Children}</AuthContext.Provider>
-  );
+  return <AuthContext value={authValue}>{Children}</AuthContext>;
 };
 
 export default Routes;
