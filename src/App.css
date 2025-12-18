@@ -39,3 +39,7 @@ body {
   height: 100%;
   object-fit: cover;
 }
+
+.input-field {
+  @apply block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#673AB7] transition-all;
+}

@@ -42,9 +42,9 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <a className="text-2xl">
+        <Link to={'/'} className="text-2xl p-2">
           <ToyGalaxyLogo></ToyGalaxyLogo>
-        </a>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
@@ -61,7 +61,10 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end flex items-center">
-        <Link className=" flex items-center gap-2 btn-ghost px-3 font-bold text-[16px]">
+        <Link
+          to={'/login'}
+          className=" flex items-center gap-2 btn-ghost px-3 font-bold text-[16px]"
+        >
           <FaUserAlt /> Login
         </Link>
         <div className="h-10 w-10 bg-gray-500 rounded-full"></div>
