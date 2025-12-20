@@ -6,12 +6,12 @@ import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Link } from 'react-router';
-
-const PopularToys = () => {
+document.title = 'ToyGalaxy | Popular Toys';
+const ComingPopularToy = () => {
   const [toys, setToys] = useState([]);
 
   useEffect(() => {
-    fetch('/PopularToys.json')
+    fetch('/ComingToy.json')
       .then((res) => res.json())
       .then((data) => setToys(data))
       .catch((err) => console.error('Error:', err));
@@ -109,4 +109,4 @@ const PopularToys = () => {
   );
 };
 
-export default PopularToys;
+export default ComingPopularToy;

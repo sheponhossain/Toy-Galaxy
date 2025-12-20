@@ -1,0 +1,74 @@
+[
+  {
+    "toyId": 1,
+    "toyName": "Lego Classic Bricks",
+    "sellerName": "ToyGalaxy Store",
+    "sellerEmail": "admin@toygalaxy.com",
+    "price": 49.99,
+    "rating": 4.8,
+    "availableQuantity": 75,
+    "description": "A timeless set of colorful Lego bricks that encourages creativity and problem-solving. Kids can build anything they imagine.",
+    "pictureURL": "https://i.ibb.co/L6K2x6z/lego.jpg",
+    "subCategory": "Building Blocks"
+  },
+  {
+    "toyId": 2,
+    "toyName": "Remote Control Monster Truck",
+    "sellerName": "AutoPlay Toys",
+    "sellerEmail": "sales@autoplay.com",
+    "price": 35.50,
+    "rating": 4.5,
+    "availableQuantity": 30,
+    "description": "High-speed monster truck with 4WD and off-road capabilities. Perfect for racing through rugged terrain.",
+    "pictureURL": "https://i.ibb.co/m0f3P7w/monster-truck.jpg",
+    "subCategory": "Remote Control Cars"
+  },
+  {
+    "toyId": 3,
+    "toyName": "Doctor Play Set",
+    "sellerName": "Little Hero Toys",
+    "sellerEmail": "hello@littlehero.com",
+    "price": 19.99,
+    "rating": 4.2,
+    "availableQuantity": 120,
+    "description": "Complete doctor kit for kids with stethoscope, thermometer, and more. Helps kids learn about health through play.",
+    "pictureURL": "https://i.ibb.co/P4H6K4Y/doctor-set.jpg",
+    "subCategory": "Role Play"
+  },
+  {
+    "toyId": 4,
+    "toyName": "Star Wars Action Figure",
+    "sellerName": "Galaxy Collectibles",
+    "sellerEmail": "fan@galaxy.com",
+    "price": 25.00,
+    "rating": 4.9,
+    "availableQuantity": 15,
+    "description": "Detailed action figure of a legendary Star Wars character. A must-have for any collector or young fan.",
+    "pictureURL": "https://i.ibb.co/Srt6MdB/star-wars.jpg",
+    "subCategory": "Action Figures"
+  },
+  {
+    "toyId": 5,
+    "toyName": "Educational Solar Robot Kit",
+    "sellerName": "TechKids Academy",
+    "sellerEmail": "tech@kidsacademy.com",
+    "price": 29.99,
+    "rating": 4.6,
+    "availableQuantity": 50,
+    "description": "Build your own solar-powered robot! This 12-in-1 kit teaches kids about renewable energy and robotics.",
+    "pictureURL": "https://i.ibb.co/VvzXQ6P/solar-robot.jpg",
+    "subCategory": "Science Toys"
+  },
+  {
+    "toyId": 6,
+    "toyName": "Barbie Dream House",
+    "sellerName": "Fashionista Toys",
+    "sellerEmail": "info@fashiontoys.com",
+    "price": 89.00,
+    "rating": 4.7,
+    "availableQuantity": 10,
+    "description": "The ultimate Barbie playhouse with multi-story rooms, elevator, and fully furnished accessories.",
+    "pictureURL": "https://i.ibb.co/3W4T5mY/barbie-house.jpg",
+    "subCategory": "Dolls"
+  }
+]

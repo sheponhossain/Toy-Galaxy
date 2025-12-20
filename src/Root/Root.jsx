@@ -6,6 +6,7 @@ import Footer from '../Components/Footer';
 const Root = () => {
   return (
     <div>
+      <title>ToyGalaxy</title>
       <Navbar />
       <div className="min-h-[calc(100vh-438px)]">
         <Outlet />

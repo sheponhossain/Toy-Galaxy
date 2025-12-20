@@ -1,7 +1,9 @@
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router';
+import { AuthContext } from '../Routes/AuthProvider';
+import { use } from 'react';
 
 const PrivateRoute = ({ children }) => {
-  const user = { name: 'Test User', email: 'user@test.com' };
+  const { user } = use(AuthContext);
   const location = useLocation();
 
   const loading = false;

@@ -1,10 +1,18 @@
-import React from 'react';
-import { FaEnvelope, FaLock, FaUser, FaImage } from 'react-icons/fa';
+import React, { useState } from 'react';
+import {
+  FaEnvelope,
+  FaLock,
+  FaUser,
+  FaImage,
+  FaEye,
+  FaEyeSlash,
+} from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate } from 'react-router';
 import Swal from 'sweetalert2'; // SweetAlert ইম্পোর্ট করা হয়েছে
 
 const Register = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleRegister = (e) => {
@@ -69,121 +77,128 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-3xl shadow-xl border border-gray-100">
-        {/* Header Section */}
-        <div className="text-center">
-          <h2 className="text-3xl font-black text-gray-800 uppercase tracking-tight">
-            Join the <span className="text-[#673AB7]">Galaxy!</span>
-          </h2>
-          <p className="mt-2 text-sm text-gray-500 font-medium">
-            Create an account to explore more toys
-          </p>
-        </div>
+    <div className="">
+      <title>ToyGalaxy | Register</title>
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-3xl shadow-xl border border-gray-100">
+          {/* Header Section */}
+          <div className="text-center">
+            <h2 className="text-3xl font-black text-gray-800 uppercase tracking-tight">
+              Join the <span className="text-[#673AB7]">Galaxy!</span>
+            </h2>
+            <p className="mt-2 text-sm text-gray-500 font-medium">
+              Create an account to explore more toys
+            </p>
+          </div>
 
-        {/* Form Section */}
-        <form onSubmit={handleRegister} className="mt-8 space-y-5">
-          <div className="space-y-4">
-            {/* Name Input */}
-            <div className="relative">
-              <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
-                <FaUser />
-              </span>
-              <input
-                type="text"
-                name="name"
-                required
-                className="block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#673AB7] focus:border-transparent transition-all"
-                placeholder="Full Name"
-              />
+          {/* Form Section */}
+          <form onSubmit={handleRegister} className="mt-8 space-y-5">
+            <div className="space-y-4">
+              {/* Name Input */}
+              <div className="relative">
+                <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+                  <FaUser />
+                </span>
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  className="block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#673AB7] focus:border-transparent transition-all"
+                  placeholder="Full Name"
+                />
+              </div>
+
+              {/* Email Input */}
+              <div className="relative">
+                <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+                  <FaEnvelope />
+                </span>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  className="block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#673AB7] focus:border-transparent transition-all"
+                  placeholder="Email Address"
+                />
+              </div>
+
+              {/* Photo URL Input */}
+              <div className="relative">
+                <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+                  <FaImage />
+                </span>
+                <input
+                  type="text"
+                  name="photo"
+                  className="block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#673AB7] focus:border-transparent transition-all"
+                  placeholder="Photo URL (Optional)"
+                />
+              </div>
+
+              <div className="relative w-full">
+                <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+                  <FaLock />
+                </span>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  name="password"
+                  className="block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#673AB7] focus:border-transparent transition-all"
+                  placeholder="Create Password"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-xl text-gray-500"
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
             </div>
-
-            {/* Email Input */}
-            <div className="relative">
-              <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
-                <FaEnvelope />
-              </span>
-              <input
-                type="email"
-                name="email"
-                required
-                className="block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#673AB7] focus:border-transparent transition-all"
-                placeholder="Email Address"
-              />
+            <div>
+              <button
+                type="submit"
+                className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-bold rounded-xl text-white bg-[#E91E63] hover:bg-[#673AB7] transition-all duration-300 shadow-lg transform active:scale-95"
+              >
+                CREATE ACCOUNT
+              </button>
             </div>
+          </form>
 
-            {/* Photo URL Input */}
-            <div className="relative">
-              <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
-                <FaImage />
-              </span>
-              <input
-                type="text"
-                name="photo"
-                className="block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#673AB7] focus:border-transparent transition-all"
-                placeholder="Photo URL (Optional)"
-              />
+          {/* Divider */}
+          <div className="relative my-4">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-200"></div>
             </div>
-
-            {/* Password Input */}
-            <div className="relative">
-              <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
-                <FaLock />
+            <div className="relative flex justify-center text-sm">
+              <span className="px-2 bg-white text-gray-400 uppercase font-bold text-xs">
+                Or sign up with
               </span>
-              <input
-                type="password"
-                name="password"
-                required
-                className="block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#673AB7] focus:border-transparent transition-all"
-                placeholder="Create Password"
-              />
             </div>
           </div>
 
-          {/* Register Button */}
-          <div>
+          {/* Social Register */}
+          <div className="grid grid-cols-1 gap-3">
             <button
-              type="submit"
-              className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-bold rounded-xl text-white bg-[#E91E63] hover:bg-[#673AB7] transition-all duration-300 shadow-lg transform active:scale-95"
+              type="button"
+              className="flex items-center justify-center gap-3 w-full py-3 px-4 border-2 border-gray-100 rounded-xl font-bold text-gray-600 hover:bg-gray-50 transition-all active:scale-95"
             >
-              CREATE ACCOUNT
+              <FcGoogle className="text-2xl" />
+              <span>Sign up with Google</span>
             </button>
           </div>
-        </form>
 
-        {/* Divider */}
-        <div className="relative my-4">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-200"></div>
-          </div>
-          <div className="relative flex justify-center text-sm">
-            <span className="px-2 bg-white text-gray-400 uppercase font-bold text-xs">
-              Or sign up with
-            </span>
-          </div>
+          {/* Footer Link */}
+          <p className="text-center text-sm text-gray-500 mt-6">
+            Already have an account?{' '}
+            <Link
+              to="/login"
+              className="font-bold text-[#673AB7] hover:underline"
+            >
+              Login Now
+            </Link>
+          </p>
         </div>
-
-        {/* Social Register */}
-        <div className="grid grid-cols-1 gap-3">
-          <button
-            type="button"
-            className="flex items-center justify-center gap-3 w-full py-3 px-4 border-2 border-gray-100 rounded-xl font-bold text-gray-600 hover:bg-gray-50 transition-all active:scale-95"
-          >
-            <FcGoogle className="text-2xl" />
-            <span>Sign up with Google</span>
-          </button>
-        </div>
-
-        {/* Footer Link */}
-        <p className="text-center text-sm text-gray-500 mt-6">
-          Already have an account?{' '}
-          <Link
-            to="/login"
-            className="font-bold text-[#673AB7] hover:underline"
-          >
-            Login Now
-          </Link>
-        </p>
       </div>
     </div>
   );
