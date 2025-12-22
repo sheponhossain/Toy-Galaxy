@@ -4,9 +4,10 @@ import { FaEnvelope, FaEye, FaEyeSlash, FaLock } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../Routes/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Login = () => {
-  const { setUser } = use(AuthContext);
+  const { setUser, singInEmainlPassword, singInWithGoogle } = use(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -14,9 +15,76 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log('Logging in...');
-    navigate(from, { replace: true });
-    setUser(true);
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    singInEmainlPassword(email, password)
+      .then((result) => {
+        const loggedUser = result.user;
+        setUser(loggedUser);
+
+        // সফল লগইনের জন্য সুন্দর সাকসেস মেসেজ
+        Swal.fire({
+          title: 'Success!',
+          text: 'Login Successful',
+          icon: 'success',
+          confirmButtonText: 'Cool',
+          timer: 1500,
+        });
+
+        form.reset();
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.error('Login error:', error.code);
+
+        let errorMessage = 'Something went wrong. Please try again.';
+
+        if (error.code === 'auth/invalid-credential') {
+          errorMessage =
+            'No account found or incorrect password. Please check your details.';
+        } else if (error.code === 'auth/too-many-requests') {
+          errorMessage = 'Too many failed attempts. Please try again later.';
+        }
+
+        // এরর মেসেজ দেখানোর জন্য লাল কালারের অ্যালার্ট
+        Swal.fire({
+          title: 'Login Failed!',
+          text: errorMessage,
+          icon: 'error',
+          confirmButtonText: 'Try Again',
+          confirmButtonColor: '#E91E63',
+        });
+      });
+  };
+
+  const handleGoogleSignIn = () => {
+    singInWithGoogle()
+      .then((result) => {
+        const loggedUser = result.user;
+        setUser(loggedUser);
+
+        Swal.fire({
+          title: 'Success!',
+          text: 'Login Successful',
+          icon: 'success',
+          confirmButtonText: 'Cool',
+          timer: 1500,
+        });
+
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.error('Google Sign-In error:', error);
+        Swal.fire({
+          title: 'Login Failed!',
+          text: 'Google Sign-In failed. Please try again.',
+          icon: 'error',
+          confirmButtonText: 'Try Again',
+          confirmButtonColor: '#E91E63',
+        });
+      });
   };
 
   return (
@@ -44,6 +112,7 @@ const Login = () => {
                 </span>
                 <input
                   type="email"
+                  name="email"
                   required
                   className="block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#673AB7] focus:border-transparent transition-all"
                   placeholder="Email Address"
@@ -96,7 +165,7 @@ const Login = () => {
           </div>
 
           {/* Social Login */}
-          <div className="grid grid-cols-1 gap-3">
+          <div onClick={handleGoogleSignIn} className="grid grid-cols-1 gap-3">
             <button className="flex items-center justify-center gap-3 w-full py-3 px-4 border-2 border-gray-100 rounded-xl font-bold text-gray-600 hover:bg-gray-50 transition-all active:scale-95">
               <FcGoogle className="text-2xl" />
 

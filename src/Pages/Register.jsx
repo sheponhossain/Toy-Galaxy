@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   FaEnvelope,
   FaLock,
@@ -10,11 +10,14 @@ import {
 import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate } from 'react-router';
 import Swal from 'sweetalert2'; // SweetAlert ইম্পোর্ট করা হয়েছে
+import { AuthContext } from '../Routes/AuthProvider';
 
 const Register = () => {
+  const { singInWithGoogle, singInEmainlPassword } = useContext(AuthContext); // AuthContext থেকে Google Sign-In ফাংশন নেওয়া হয়েছে
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
+  // --- পাসওয়ার্ড ভেরিফিকেশন শুরু ---
   const handleRegister = (e) => {
     e.preventDefault();
 
@@ -25,7 +28,44 @@ const Register = () => {
     const photo = form.photo.value;
     const password = form.password.value;
 
-    // --- পাসওয়ার্ড ভেরিফিকেশন শুরু ---
+    singInEmainlPassword(email, password)
+      .then((result) => {
+        const loggedUser = result.user;
+        setUser(loggedUser);
+
+        // সফল রেজিস্ট্রেশনের জন্য সুন্দর সাকসেস মেসেজ
+        Swal.fire({
+          title: 'Success!',
+          text: 'Registration Successful',
+          icon: 'success',
+          confirmButtonText: 'Cool',
+          timer: 1500,
+        });
+
+        form.reset();
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.error('Registration error:', error.code);
+
+        let errorMessage = 'Something went wrong. Please try again.';
+
+        if (error.code === 'auth/invalid-credential') {
+          errorMessage =
+            'No account found or incorrect password. Please check your details.';
+        } else if (error.code === 'auth/too-many-requests') {
+          errorMessage = 'Too many failed attempts. Please try again later.';
+        }
+
+        // এরর মেসেজ দেখানোর জন্য লাল কালারের অ্যালার্ট
+        Swal.fire({
+          title: 'Registration Failed!',
+          text: errorMessage,
+          icon: 'error',
+          confirmButtonText: 'Try Again',
+          confirmButtonColor: '#E91E63',
+        });
+      });
 
     // ১. কমপক্ষে ৬ ক্যারেক্টার হতে হবে
     if (password.length < 6) {
@@ -74,6 +114,38 @@ const Register = () => {
     setTimeout(() => {
       navigate('/');
     }, 1500);
+  };
+
+  const handleGoogleSignIn = () => {
+    singInWithGoogle()
+      .then((result) => {
+        const loggedUser = result.user;
+        setUser(loggedUser);
+
+        Swal.fire({
+          title: 'Success!',
+          text: 'Registration Successful',
+          icon: 'success',
+          confirmButtonText: 'Cool',
+          timer: 1500,
+        });
+
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.error('Google Sign-In error:', error.code);
+
+        let errorMessage = 'Something went wrong. Please try again.';
+
+        // এরর মেসেজ দেখানোর জন্য লাল কালারের অ্যালার্ট
+        Swal.fire({
+          title: 'Registration Failed!',
+          text: errorMessage,
+          icon: 'error',
+          confirmButtonText: 'Try Again',
+          confirmButtonColor: '#E91E63',
+        });
+      });
   };
 
   return (
@@ -203,5 +275,4 @@ const Register = () => {
     </div>
   );
 };
-
 export default Register;

@@ -1,21 +1,20 @@
-import React, { use } from 'react';
+import React, { useContext } from 'react';
 import ToyGalaxyLogo from '../ToyGalaxyLogo/ToyGalaxyLogo';
 import { FaUserAlt } from 'react-icons/fa';
-import { Link, NavLink } from 'react-router';
+import { Link, Navigate, NavLink, useNavigate } from 'react-router';
 import { AuthContext } from '../Routes/AuthProvider';
 
 const Navbar = () => {
-  const { user } = use(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
   const handleLogOut = () => {
-    // eslint-disable-next-line no-undef
-    logOut() // Apnar AuthContext theke asha logOut function
+    logOut()
       .then(() => {
-        // Logout successful hole SweetAlert dekhaite paren
-        console.log('Logged out successfully');
+        navigate('/login');
       })
       .catch((error) => console.error(error));
+    console.log('User logged out successfully');
   };
-  // const user = true; // এখানে আপনার ইউজার অবস্থা থাকবে (লগইন/লগআউট)
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start">
@@ -110,7 +109,7 @@ const Navbar = () => {
         {user && user?.email ? (
           /* User thakle Logout button dekhabe */
           <button
-            onClick={handleLogOut}
+            onClick={() => handleLogOut()}
             className="flex items-center gap-2 btn-ghost px-3 font-bold text-[16px] hover:text-[#E91E63] transition-all"
           >
             <FaUserAlt /> Logout
