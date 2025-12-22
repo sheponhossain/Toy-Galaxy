@@ -4,6 +4,7 @@ import {
   getAuth,
   GoogleAuthProvider,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -59,6 +60,17 @@ const AuthProvider = ({ children }) => {
     });
   };
 
+  //   Resat password
+  const resetPassword = (email) => {
+    setLoading(true);
+    const actionCodeSettings = {
+      // পাসওয়ার্ড রিসেট শেষে যেখানে ফিরে যাবে
+      url: 'http://localhost:5173/login',
+      handleCodeInApp: true,
+    };
+    return sendPasswordResetEmail(auth, email, actionCodeSettings);
+  };
+
   const authInfo = {
     user,
     setUser,
@@ -66,6 +78,7 @@ const AuthProvider = ({ children }) => {
     loading,
     setLoading,
     createNewUser,
+    resetPassword,
     singInWithGoogle,
     updateUserProfile,
     singInEmainlPassword,

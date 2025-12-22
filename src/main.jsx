@@ -15,6 +15,7 @@ import PrivateRoute from './PrivetRoutes/PrivateRoutes.jsx';
 import AddToy from './Pages/AddToy.jsx';
 import PupolarToyDetails from './Components/PupolartoyDetails.jsx';
 import AllToys from './Components/AllToys.jsx';
+import ForgotPassword from './Pages/ForgotPassword.jsx';
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
       {
         path: 'login',
         element: <Login />,
+      },
+      {
+        path: 'forgot-password',
+        element: <ForgotPassword />,
       },
       {
         path: 'register',
