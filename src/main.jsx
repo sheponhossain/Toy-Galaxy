@@ -13,6 +13,8 @@ import Profile from './Pages/Profile.jsx';
 import AuthProvider from './Routes/AuthProvider.jsx';
 import PrivateRoute from './PrivetRoutes/PrivateRoutes.jsx';
 import AddToy from './Pages/AddToy.jsx';
+import PupolarToyDetails from './Components/PupolartoyDetails.jsx';
+import AllToys from './Components/AllToys.jsx';
 
 const router = createBrowserRouter([
   {
@@ -32,12 +34,20 @@ const router = createBrowserRouter([
         element: <Profile />,
       },
       {
+        path: '/popular-toy-details/:id',
+        element: <PupolarToyDetails />,
+      },
+      {
         path: '/toys/:id',
         element: (
-          <PrivateRoute>
-            <ToyDetails />
-          </PrivateRoute>
+          // <PrivateRoute>
+          <ToyDetails />
+          // </PrivateRoute>
         ),
+      },
+      {
+        path: 'all-toys',
+        element: <AllToys />,
       },
       {
         path: 'login',

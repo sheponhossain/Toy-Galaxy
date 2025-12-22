@@ -38,6 +38,7 @@ const ToyDetails = () => {
       <div className="max-w-6xl mx-auto p-6 lg:py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 bg-white shadow-2xl rounded-3xl overflow-hidden border border-gray-100">
           {/* Image Section */}
+
           <div className="h-96 md:h-full">
             <img
               src={toy.pictureURL || toy.thumbnail}
