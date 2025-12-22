@@ -7,9 +7,9 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from 'firebase/auth';
 import { app } from '../../Firebase.config';
-import { create } from 'framer-motion/m';
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
@@ -51,6 +51,14 @@ const AuthProvider = ({ children }) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
+  //   update userProfile
+  const updateUserProfile = (name, photo) => {
+    return updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photo,
+    });
+  };
+
   const authInfo = {
     user,
     setUser,
@@ -59,6 +67,7 @@ const AuthProvider = ({ children }) => {
     setLoading,
     createNewUser,
     singInWithGoogle,
+    updateUserProfile,
     singInEmainlPassword,
   };
   return <AuthContext value={authInfo}>{children}</AuthContext>;
