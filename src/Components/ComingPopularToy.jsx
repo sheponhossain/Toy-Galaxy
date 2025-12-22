@@ -29,7 +29,6 @@ const ComingPopularToy = () => {
           </p>
         </div>
 
-        {/* স্লাইডার শুরু */}
         <Swiper
           modules={[Autoplay, Pagination]}
           spaceBetween={24}
@@ -45,7 +44,7 @@ const ComingPopularToy = () => {
             768: { slidesPerView: 3 },
             1024: { slidesPerView: 4 },
           }}
-          className="pb-12" // Pagination এর জন্য নিচে একটু জায়গা
+          className="pb-12"
         >
           {toys.map((toy) => (
             <SwiperSlide key={toy.toyId || toy.id}>

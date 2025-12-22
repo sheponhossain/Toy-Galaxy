@@ -36,7 +36,7 @@ const Slider = () => {
               alt="Welcome to Toy Galaxy"
               className="w-full h-full object-cover lg:object-fill"
             />
-            {/* picture er upor likha dite caile */}
+
             <div className="absolute inset-0 bg-black/5"></div>
           </div>
         </SwiperSlide>

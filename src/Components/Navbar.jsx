@@ -5,7 +5,6 @@ import { Link, NavLink, useNavigate } from 'react-router';
 import { AuthContext } from '../Routes/AuthProvider';
 
 const Navbar = () => {
-  // ১. Context থেকে loading স্টেটটি নিয়ে আসুন
   const { user, logOut, loading } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -20,7 +19,6 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-100 shadow-sm px-4 md:px-8">
       <div className="navbar-start">
-        {/* Mobile Dropdown */}
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
@@ -86,7 +84,7 @@ const Navbar = () => {
               Add Toy
             </NavLink>
           </li>
-          {/* লোডিং শেষ না হওয়া পর্যন্ত প্রোফাইল বাটন হাইড থাকবে */}
+
           {!loading && user && (
             <li>
               <NavLink
@@ -105,9 +103,7 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-end flex items-center gap-2">
-        {/* ২. লোডিং কন্ডিশন চেক */}
         {loading ? (
-          // লোড হওয়ার সময় এই ছোট স্পিনারটি দেখাবে
           <div className="flex items-center gap-3">
             <span className="loading loading-spinner loading-md text-[#673AB7]"></span>
           </div>
@@ -141,7 +137,6 @@ const Navbar = () => {
                     className="h-full w-full object-cover"
                   />
                 </div>
-                {/* হোভার টুলটিপ */}
                 <div className="absolute right-0 top-12 scale-0 group-hover:scale-100 transition-all duration-300 origin-top z-50">
                   <div className="bg-[#673AB7] text-white text-xs font-bold py-2 px-4 rounded-lg shadow-xl whitespace-nowrap relative">
                     {user?.displayName || 'Anonymous User'}

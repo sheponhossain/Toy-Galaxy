@@ -4,7 +4,7 @@ import { AuthContext } from '../Routes/AuthProvider';
 import Swal from 'sweetalert2';
 
 const ForgotPassword = () => {
-  const { resetPassword } = useContext(AuthContext); // কনটেক্সট থেকে ফাংশনটি নিন
+  const { resetPassword } = useContext(AuthContext);
   const location = useLocation();
   const [email, setEmail] = useState('');
 
@@ -17,7 +17,6 @@ const ForgotPassword = () => {
   const handleReset = (e) => {
     e.preventDefault();
 
-    // ১. প্রথমে ফায়ারবেসকে বলবো ওই ইউজারের মেইলে লিঙ্ক পাঠাতে
     console.log('Resetting password for:', email);
     resetPassword(email)
       .then(() => {
@@ -26,7 +25,7 @@ const ForgotPassword = () => {
           text: 'আমরা আপনার রেজিস্টার্ড মেইলে রিসেট লিঙ্ক পাঠিয়েছি।',
           icon: 'success',
         }).then(() => {
-          // ২. সরাসরি জিমেইলে পাঠিয়ে দেওয়া
+          // setEmail('');
         });
       })
       .catch((error) => {

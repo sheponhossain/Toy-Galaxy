@@ -13,7 +13,6 @@ import Swal from 'sweetalert2';
 import { AuthContext } from '../Routes/AuthProvider';
 
 const Register = () => {
-  // ১. AuthContext থেকে প্রয়োজনীয় ফাংশনগুলো নিন
   const { singInWithGoogle, createNewUser, setUser, updateUserProfile } =
     useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
@@ -30,7 +29,6 @@ const Register = () => {
     const photo = form.photo.value;
     const password = form.password.value;
 
-    // --- ২. আগে পাসওয়ার্ড ভেরিফিকেশন করুন (Firebase কল করার আগে) ---
     if (password.length < 6) {
       return Swal.fire({
         icon: 'error',
@@ -53,10 +51,8 @@ const Register = () => {
       });
     }
 
-    // --- ৩. ভেরিফিকেশন সফল হলে Firebase এ ইউজার তৈরি করুন ---
     createNewUser(email, password)
       .then((result) => {
-        // ৪. ইউজার প্রোফাইল আপডেট (নাম ও ছবি সেট করা)
         updateUserProfile(name, photo)
           .then(() => {
             setUser({ ...result.user, displayName: name, photoURL: photo });

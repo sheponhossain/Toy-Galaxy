@@ -23,7 +23,6 @@ const PupolarToyDetails = () => {
         return res.json();
       })
       .then((data) => {
-        // String এ কনভার্ট করে চেক করা সবচেয়ে নিরাপদ
         const foundToy = data.find((item) => String(item.toyId) === String(id));
         setToy(foundToy);
       })
@@ -67,11 +66,10 @@ const PupolarToyDetails = () => {
     <div className="min-h-screen bg-[#fcfaff] py-12 px-4 md:px-8">
       <div className="max-w-6xl mx-auto bg-white rounded-[3rem] shadow-xl overflow-hidden border border-purple-50">
         <div className="flex flex-col lg:flex-row">
-          {/* Left Side: Toy Image */}
           <div className="lg:w-1/2 p-8 bg-[#f3f0ff] flex items-center justify-center">
             <div className="relative group">
               <img
-                src={toy.pictureURL || toy.thumbnail} // যদি pictureURL না থাকে তবে thumbnail দেখাবে
+                src={toy.pictureURL || toy.thumbnail}
                 alt={toy.toyName}
                 key={toy?.toyId}
                 className="rounded-3xl shadow-2xl transform group-hover:scale-105 transition-transform duration-500 max-h-[500px] object-cover"
@@ -82,7 +80,6 @@ const PupolarToyDetails = () => {
             </div>
           </div>
 
-          {/* Right Side: Toy Info */}
           <div className="lg:w-1/2 p-8 lg:p-12">
             <div className="flex justify-between items-start mb-4">
               <h1 className="text-4xl font-black text-gray-800">
@@ -93,7 +90,6 @@ const PupolarToyDetails = () => {
               </div>
             </div>
 
-            {/* Seller Card */}
             <div className="bg-purple-50 p-4 rounded-2xl mb-6 flex flex-wrap gap-4 items-center border border-purple-100">
               <div className="flex items-center gap-2">
                 <FaStore className="text-[#673AB7]" />
@@ -152,7 +148,6 @@ const PupolarToyDetails = () => {
           </div>
         </div>
 
-        {/* Feedback Section */}
         <div className="p-8 lg:p-12 border-t border-gray-100 bg-gray-50">
           <h3 className="text-2xl font-black text-gray-800 mb-6">
             Family Feedbacks & Ratings

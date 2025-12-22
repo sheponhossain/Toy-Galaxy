@@ -19,7 +19,6 @@ const Footer = () => {
     <footer className="bg-white border-t-8 border-[#FFC107] pt-10 pb-8 px-4 sm:px-8 lg:px-16 font-sans overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
-          {/* 1. Brand & About */}
           <div className="flex flex-col items-center sm:items-start space-y-5 text-center sm:text-left">
             <div className="">
               <ToyGalaxyLogo></ToyGalaxyLogo>
@@ -156,14 +155,12 @@ const SocialIcon = ({ href, icon, color }) => (
   </a>
 );
 
-// অ্যানিমেটেড লিঙ্ক কম্পোনেন্ট (এটাই আপনার মেইন রিকুয়েস্ট)
 const FooterLink = ({ href, children, lineColor = 'bg-gray-400' }) => (
   <a
     href={href}
     className="group relative text-gray-600 hover:text-gray-900 transition-colors duration-300 inline-block pb-1"
   >
     {children}
-    {/* Animated Underline */}
     <span
       className={`absolute bottom-0 left-0 w-0 h-0.5 ${lineColor} transition-all duration-300 group-hover:w-full`}
     ></span>

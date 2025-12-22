@@ -64,7 +64,6 @@ const AuthProvider = ({ children }) => {
   const resetPassword = (email) => {
     setLoading(true);
     const actionCodeSettings = {
-      // পাসওয়ার্ড রিসেট শেষে যেখানে ফিরে যাবে
       url: 'http://localhost:5173/login',
       handleCodeInApp: true,
     };

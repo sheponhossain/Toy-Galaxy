@@ -3,18 +3,15 @@ import Swal from 'sweetalert2';
 import { AuthContext } from '../Routes/AuthProvider';
 
 const Profile = () => {
-  // ১. Context থেকে প্রয়োজনীয় সব কিছু নিন
   const { user, updateUserProfile, setUser } = useContext(AuthContext);
 
   useEffect(() => {
     document.title = 'ToyGalaxy | Profile';
   }, []);
 
-  // ইনপুট ফিল্ডের জন্য স্টেট
   const [name, setName] = useState(user?.displayName || '');
   const [photo, setPhoto] = useState(user?.photoURL || '');
 
-  // ইউজারের তথ্য পরিবর্তন হলে স্টেট আপডেট করার জন্য useEffect (প্রয়োজনীয়)
   useEffect(() => {
     setName(user?.displayName || '');
     setPhoto(user?.photoURL || '');
@@ -31,10 +28,8 @@ const Profile = () => {
       });
     }
 
-    // ২. Firebase updateProfile লজিক কল করা
     updateUserProfile(name, photo)
       .then(() => {
-        // ৩. গ্লোবাল ইউজার স্টেট আপডেট করা (যাতে সাথে সাথে সব জায়গায় নাম/ছবি চেঞ্জ হয়)
         setUser({ ...user, displayName: name, photoURL: photo });
 
         Swal.fire({

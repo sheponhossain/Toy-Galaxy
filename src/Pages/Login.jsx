@@ -9,16 +9,14 @@ const Login = () => {
   const { setUser, singInEmainlPassword, singInWithGoogle } = use(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
 
-  // ১. ইমেইল ট্র্যাক করার জন্য স্টেট
   const [email, setEmail] = useState('');
 
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || '/';
 
-  // Forgot Password হ্যান্ডেলার
+  // Forgot Password
   const handleForgotPasswordRedirect = () => {
-    // ইমেইলসহ ফরগেট পাসওয়ার্ড পেজে পাঠানো হচ্ছে
     navigate('/forgot-password', { state: { email } });
   };
 
@@ -109,7 +107,6 @@ const Login = () => {
                 />
               </div>
 
-              {/* Password Input */}
               <div className="relative">
                 <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
                   <FaLock />
@@ -130,7 +127,6 @@ const Login = () => {
                 </button>
               </div>
 
-              {/* ২. ফরগেট পাসওয়ার্ড লিঙ্ক */}
               <div className="flex justify-end">
                 <button
                   type="button"
@@ -152,7 +148,6 @@ const Login = () => {
             </div>
           </form>
 
-          {/* ... বাকি অংশ (Social Login & Register Link) ... */}
           <div className="relative my-6">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-gray-200"></div>

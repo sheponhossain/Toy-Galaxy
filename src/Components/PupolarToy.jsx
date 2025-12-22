@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { FaStar, FaStore, FaArrowRight, FaHeart } from 'react-icons/fa';
 import { Link } from 'react-router';
-import AOS from 'aos'; // AOS ইম্পোর্ট
-import 'aos/dist/aos.css'; // AOS CSS ইম্পোর্ট
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const PopularToys = () => {
   const [toys, setToys] = useState([]);
 
   useEffect(() => {
-    // AOS ইনিশিয়ালাইজ করা
     AOS.init({
-      duration: 1000, // ১ সেকেন্ড ধরে অ্যানিমেশন হবে
-      once: false, // প্রতিবার স্ক্রল করলে অ্যানিমেশন হবে
+      duration: 1000,
+      once: false,
     });
 
     fetch('/PopularToy.json')
@@ -50,17 +49,14 @@ const PopularToys = () => {
           {toys.map((toy, index) => (
             <div
               key={toy.toyId}
-              // AOS attributes ব্যবহার করে খুব স্মুথ এনিমেশন
               data-aos="fade-up"
-              data-aos-delay={index * 200} // একটার পর একটা আসার জন্য ডিলে
+              data-aos-delay={index * 200}
               className="group relative bg-white rounded-[2rem] p-4 shadow-sm hover:shadow-2xl transition-all duration-500 border border-transparent hover:border-purple-200"
             >
-              {/* Wishlist Button */}
               <button className="absolute top-6 right-6 z-10 bg-white/80 p-2 rounded-full text-gray-400 hover:text-red-500 shadow-sm">
                 <FaHeart />
               </button>
 
-              {/* Image Container */}
               <div className="relative h-60 w-full rounded-[1.5rem] overflow-hidden bg-gray-100">
                 <img
                   src={toy.pictureURL}
@@ -72,7 +68,6 @@ const PopularToys = () => {
                 </div>
               </div>
 
-              {/* Content */}
               <div className="mt-5 px-2">
                 <h3 className="text-lg font-bold text-gray-800 truncate group-hover:text-[#673AB7] transition-colors">
                   {toy.toyName}

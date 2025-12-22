@@ -6,7 +6,7 @@ import {
   FaDollarSign,
   FaBoxes,
 } from 'react-icons/fa';
-import Swal from 'sweetalert2'; // Success message দেখানোর জন্য
+import Swal from 'sweetalert2';
 
 const AddToy = () => {
   const handleAddToy = (e) => {
@@ -23,7 +23,6 @@ const AddToy = () => {
     const newToy = { name, photo, category, price, quantity, description };
     console.log(newToy);
 
-    // এখানে আপনার ডাটাবেস বা API কল হবে
     Swal.fire({
       title: 'Success!',
       text: 'Toy added to the Galaxy successfully',
