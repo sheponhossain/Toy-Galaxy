@@ -26,7 +26,7 @@ const PopularToys = () => {
     <section className="py-16 bg-gradient-to-b from-white to-[#f3f0ff] px-4 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-4">
           <div data-aos="fade-right" className="space-y-2">
             <span className="bg-[#E91E63] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">
               Top Picks

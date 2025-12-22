@@ -12,16 +12,21 @@ import { useParams } from 'react-router';
 
 const PupolarToyDetails = () => {
   const { id } = useParams();
-  const [toy, setToy] = useState(null); // Initial value null রাখা ভালো
+  const [toy, setToy] = useState(null);
   console.log('PupolarToyDetails toy state:', toy);
 
   useEffect(() => {
     fetch('/PopularToy.json')
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error('File not found');
+        return res.json();
+      })
       .then((data) => {
-        const foundToy = data.find((item) => item.toyId == id);
+        // String এ কনভার্ট করে চেক করা সবচেয়ে নিরাপদ
+        const foundToy = data.find((item) => String(item.toyId) === String(id));
         setToy(foundToy);
-      });
+      })
+      .catch((err) => console.error('Fetch error:', err));
   }, [id]);
 
   const [reviews, setReviews] = useState([
@@ -49,7 +54,6 @@ const PupolarToyDetails = () => {
     setNewReview('');
   };
 
-  // ডাটা আসার আগ পর্যন্ত লোডিং দেখানো জরুরি যাতে undefined error না আসে
   if (!toy) {
     return (
       <div className="min-h-screen flex items-center justify-center text-2xl font-bold text-[#673AB7]">
@@ -68,6 +72,7 @@ const PupolarToyDetails = () => {
               <img
                 src={toy.pictureURL || toy.thumbnail} // যদি pictureURL না থাকে তবে thumbnail দেখাবে
                 alt={toy.toyName}
+                key={toy?.toyId}
                 className="rounded-3xl shadow-2xl transform group-hover:scale-105 transition-transform duration-500 max-h-[500px] object-cover"
               />
               <span className="absolute top-4 left-4 bg-[#E91E63] text-white px-4 py-1 rounded-full text-sm font-bold shadow-lg">

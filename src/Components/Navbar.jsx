@@ -38,17 +38,52 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex="-1"
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2  shadow"
           >
             <li>
-              <NavLink to={'/'} className=" font-medium">
+              <NavLink
+                to="/"
+                className={
+                  ({ isActive }) =>
+                    isActive
+                      ? 'text-white bg-[#673AB7] px-3 py-2 rounded-lg font-bold' // অ্যাক্টিভ থাকলে এই ক্লাস পাবে
+                      : 'text-gray-600 hover:text-[#673AB7] px-3 py-2 font-medium' // না থাকলে এই ক্লাস
+                }
+              >
                 Home
               </NavLink>
             </li>
             <li>
-              <NavLink to={'/profile'} className="text-[16px] font-medium">
-                Profile
-              </NavLink>
+              {
+                <NavLink
+                  to={'/add-toy'}
+                  className={
+                    ({ isActive }) =>
+                      isActive
+                        ? 'text-white bg-[#673AB7] px-3 py-2 rounded-lg font-bold' // অ্যাক্টিভ থাকলে এই ক্লাস পাবে
+                        : 'text-gray-600 hover:text-[#673AB7] px-3 py-2 font-medium' // না থাকলে এই ক্লাস
+                  }
+                >
+                  Add Toy
+                </NavLink>
+              }
+            </li>
+            <li>
+              {user ? (
+                <NavLink
+                  to={'/profile'}
+                  className={
+                    ({ isActive }) =>
+                      isActive
+                        ? 'text-white bg-[#673AB7] px-3 py-2 rounded-lg font-bold' // অ্যাক্টিভ থাকলে এই ক্লাস পাবে
+                        : 'text-gray-600 hover:text-[#673AB7] px-3 py-2 font-medium' // না থাকলে এই ক্লাস
+                  }
+                >
+                  Profile
+                </NavLink>
+              ) : (
+                ' '
+              )}
             </li>
           </ul>
         </div>

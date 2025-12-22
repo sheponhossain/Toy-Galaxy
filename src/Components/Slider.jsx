@@ -12,7 +12,7 @@ import BigSaleBanner from '../assets/Big-Sale-Banner.png';
 
 const Slider = () => {
   return (
-    <div className="w-full h-[40vh] md:h-[60vh] lg:h-[75vh] xl:h-[80vh] overflow-hidden">
+    <div className="w-full h-[40vh] md:h-[60vh] lg:h-[75vh] xl:h-[80vh] overflow-hidden object-fill">
       <Swiper
         spaceBetween={0}
         centeredSlides={true}

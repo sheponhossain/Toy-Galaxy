@@ -11,10 +11,10 @@ const AllToys = () => {
       .then((data) => setToys(data))
       .catch((err) => console.error('Error:', err));
   }, []);
+
   return (
     <div className="min-h-screen bg-base-200 py-12 px-4">
       <div className="max-w-7xl mx-auto">
-        {/* Header with Back Button */}
         <div className="flex justify-between items-center mb-10">
           <Link to="/" className="btn btn-ghost gap-2 text-[#673AB7]">
             <FaArrowLeft /> Back to Home
@@ -36,9 +36,9 @@ const AllToys = () => {
 
               <div className="h-64 rounded-lg overflow-hidden mb-4">
                 <img
-                  src={toy.thumbnail}
+                  src={toy.pictureURL || toy.thumbnail}
                   alt={toy.toyName}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-duration-500"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
               </div>
 
