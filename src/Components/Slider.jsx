@@ -12,7 +12,7 @@ import BigSaleBanner from '../assets/Big-Sale-Banner.png';
 
 const Slider = () => {
   return (
-    <div className="w-full h-[40vh] md:h-[60vh] lg:h-[75vh] xl:h-[80vh] overflow-hidden object-fill">
+    <div className="w-full mx-auto h-[40vh] md:h-[60vh] lg:h-[75vh] xl:h-[80vh] overflow-hidden object-fill">
       <Swiper
         spaceBetween={0}
         centeredSlides={true}
@@ -30,7 +30,7 @@ const Slider = () => {
         className="mySwiper w-full h-full"
       >
         <SwiperSlide>
-          <div className="w-full h-full relative">
+          <div className="w-full mx-auto h-full relative">
             <img
               src={WelcomeBanner}
               alt="Welcome to Toy Galaxy"

@@ -8,6 +8,7 @@ import {
   FaCheckCircle,
   FaUserCircle,
 } from 'react-icons/fa';
+import { TailSpin } from 'react-loader-spinner';
 import { useParams } from 'react-router';
 
 const PupolarToyDetails = () => {
@@ -57,7 +58,7 @@ const PupolarToyDetails = () => {
   if (!toy) {
     return (
       <div className="min-h-screen flex items-center justify-center text-2xl font-bold text-[#673AB7]">
-        Loading Toy Details...
+        <TailSpin></TailSpin>
       </div>
     );
   }
